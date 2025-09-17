@@ -23,51 +23,90 @@ h1 {
   margin: 20px auto;
   width: 80%;
   font-size: 2.5rem;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 
-               0 0 15px #0073e6, 0 0 20px #0073e6;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6;
   animation: flicker 2s infinite alternate;
   border: 2px solid #fff;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.3);
 }
 @keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 
-                 0 0 15px #0073e6, 0 0 20px #0073e6;
-  }
-  20%, 24%, 55% {
-    text-shadow: none;
-  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6; }
+  20%, 24%, 55% { text-shadow: none; }
+}
+
+/* Variables */
+:root {
+  --table-color: forestgreen;
+  --row-bg-color: honeydew;        /* even rows base color */
+  --row-hover-bg: #fff3cd;         /* DISTINCT from page background */
+  --row-lift-translate: -4px;      /* lift amount */
 }
 
 /* Table Styling */
-:root {
-  --table-color: forestgreen;
-  --row-bg-color: honeydew;
-}
-
-/* (a) ID Selector for #game-table */
 #game-table {
-  border: 2px solid var(--table-color);
   text-align: center;
-  height: 200px;
   width: 400px;
+  border-collapse: separate;     /* allow shadows to show cleanly */
+  border-spacing: 0;             /* keep borders tight */
+  margin: 0 auto;                /* center the table */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* (a) Class Selector for .table-container */
-.table-container {
-  display: flex;             /* turns into flexbox */
-  justify-content: center;   /* centers table horizontally */
-  margin-top: 30px;          /* adds space above table */
-}
-
-table caption {
-  color: white;
+/* Caption (descendant selector) */
+#game-table caption {
   text-transform: uppercase;
   background-color: var(--table-color);
+  color: white;
   padding: 10px;
+  font-weight: bold;
 }
 
-tr:nth-child(even) {
+/* Cells */
+#game-table th,
+#game-table td {
+  border: 1px solid #ccc;
+  padding: 12px 15px;
+  background: #fff;               /* default cell background */
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+/* Header row base */
+#game-table thead th {
+  background: #f3f3f3;
+  position: relative;             /* helps with smooth transform */
+  z-index: 0;
+}
+
+/* Even rows (pseudo-class selector) */
+#game-table tbody tr:nth-child(even) td {
   background-color: var(--row-bg-color);
+}
+
+/* ----- HOVER EFFECTS (apply to ALL rows: header + body) ----- */
+
+/* Row hover: distinct color + subtle elevation */
+#game-table thead tr:hover th,
+#game-table tbody tr:hover td {
+  background-color: var(--row-hover-bg);
+}
+
+/* Row lift: lift all cells in the hovered row together */
+#game-table thead tr:hover th,
+#game-table tbody tr:hover td {
+  transform: translateY(var(--row-lift-translate));
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* Optional: cursor to indicate interactivity */
+#game-table tr:hover { cursor: pointer; }
+
+/* Source link polish */
+.source {
+  text-align: center;
+  margin-top: 20px;
+}
+.source a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
 }
