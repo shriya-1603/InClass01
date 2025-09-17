@@ -100,7 +100,6 @@ h1 {
 /* Optional: cursor to indicate interactivity */
 #game-table tr:hover { cursor: pointer; }
 
-/* Source link polish */
 .source {
   text-align: center;
   margin-top: 20px;
