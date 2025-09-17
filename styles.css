@@ -1,0 +1,73 @@
+/* Animated Background Gradient */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+}
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Neon Text Effect for Heading */
+h1 {
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 15px;
+  margin: 20px auto;
+  width: 80%;
+  font-size: 2.5rem;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 
+               0 0 15px #0073e6, 0 0 20px #0073e6;
+  animation: flicker 2s infinite alternate;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 
+                 0 0 15px #0073e6, 0 0 20px #0073e6;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* Table Styling */
+:root {
+  --table-color: forestgreen;
+  --row-bg-color: honeydew;
+}
+
+/* (a) ID Selector for #game-table */
+#game-table {
+  border: 2px solid var(--table-color);
+  text-align: center;
+  height: 200px;
+  width: 400px;
+}
+
+/* (a) Class Selector for .table-container */
+.table-container {
+  display: flex;             /* turns into flexbox */
+  justify-content: center;   /* centers table horizontally */
+  margin-top: 30px;          /* adds space above table */
+}
+
+table caption {
+  color: white;
+  text-transform: uppercase;
+  background-color: var(--table-color);
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--row-bg-color);
+}
